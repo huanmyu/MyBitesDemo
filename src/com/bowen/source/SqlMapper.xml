@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<!DOCTYPE configuration  
+PUBLIC "-//ibatis.apache.org//DTD Config 3.0//EN"  
+"http://ibatis.apache.org/dtd/ibatis-3-config.dtd">
+<configuration> 
+<!--关联数据库连接文件-->
+ <properties resource="com/bowen/source/jdbc.properties"/> 
+ <!--通过typeAliase属性后，使用实体类的时候，不需要再加实体类的包名-->
+ <typeAliases>  
+  <!--类型别名是为 Java 类型设置一个短的名字。它只和 XML 配置有关，存在的意义仅在于用来减少类完全限定名的冗余。-->
+   <typeAlias type="com.bowen.bean.Student" alias="Student"/> 
+ </typeAliases>  
+ <!--配置环境 默认的环境和环境 ID 是一目了然的。随你怎么命名，只要保证默认环境要匹配其中一个环境ID。-->
+ <environments default="development">  
+    <environment id="development">  
+     <!--事务管理器的配置-->
+        <transactionManager type="JDBC"/> 
+        <!--数据源动态配置，共享类型--> 
+         <dataSource type="POOLED">  
+            <property name="driver" value="${driver}"/>  
+            <property name="url" value="${url}"/>  
+            <property name="username" value="${username}"/>  
+            <property name="password" value="${password}"/>  
+         </dataSource>  
+      </environment>  
+ </environments> 
+  <!--映射器-->
+  <mappers>
+  	<!--mybites找对数据库表进行操作的映射文件-->
+  	<mapper resource="com/bowen/source/student.xml"/>
+  </mappers>
+</configuration>
